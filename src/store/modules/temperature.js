@@ -3,7 +3,7 @@ import TemperatureService from '@/services/TemperatureService.js'
 export const namespaced = true
 
 export const state = {
-  temperature: {}
+  temperature: null
 }
 
 export const mutations = {
@@ -14,6 +14,8 @@ export const mutations = {
 
 export const actions = {
   fetchTemperature({ commit }, city) {
+    commit('SET_TEMPERATURE', null)
+
     return TemperatureService.getTemperature(city).then(response => {
       commit('SET_TEMPERATURE', response.data)
 
