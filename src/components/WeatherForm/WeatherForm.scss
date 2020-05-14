@@ -1,0 +1,21 @@
+.WeatherForm {
+
+  display: flex;
+  flex-direction: column;
+  
+  > div {
+    padding-top: 1rem;
+  }
+
+  &__headline {
+    font-size: 2rem;
+    color: darkblue;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+}
