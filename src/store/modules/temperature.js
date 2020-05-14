@@ -13,14 +13,17 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchTemperature({ commit }, city) {
-    commit('SET_TEMPERATURE', null)
+  fetchTemperature({ commit, dispatch }, city) {
+    dispatch('clearTemperatureState')
 
     return TemperatureService.getTemperature(city).then(response => {
       commit('SET_TEMPERATURE', response.data)
 
       return response.data
     })
+  },
+  clearTemperatureState({ commit }) {
+    commit('SET_TEMPERATURE', null)
   }
 }
 
