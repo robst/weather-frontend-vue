@@ -26,16 +26,22 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import NProgress from "nprogress";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   data() {
     return {
-      city: "",
+      city: null,
       found: true
     };
   },
   methods: {
     getWeatherData() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return false;
+      }
+
       NProgress.start();
       this.fetchTemperature(this.city).catch(() => {
         this.found = false;
@@ -50,6 +56,9 @@ export default {
       return this.temperature.temperature;
     },
     ...mapState(["temperature"])
+  },
+  validations: {
+    city: { required }
   }
 };
 </script>
