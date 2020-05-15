@@ -30,4 +30,8 @@ export default {
 .text-left {
   text-align: left;
 }
+
+.error {
+  color: red;
+}
 </style>
