@@ -16,6 +16,8 @@
         <li>Tiefstwert {{ weatherData.min }} Grad</li>
       </ul>
     </div>
+
+    <div v-if="!found" class="error">Keine Wetterdaten gefunden. Existiert diese Stadt?</div>
   </section>
 </template>
 
@@ -27,12 +29,16 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      city: ""
+      city: "",
+      found: true
     };
   },
   methods: {
     getWeatherData() {
-      this.fetchTemperature(this.city);
+      this.fetchTemperature(this.city).catch(() => {
+        this.found = false;
+        setTimeout(() => (this.found = true), 3000);
+      });
     },
     ...mapActions("temperature", ["clearTemperatureState", "fetchTemperature"])
   },
