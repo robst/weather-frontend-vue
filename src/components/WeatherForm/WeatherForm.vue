@@ -25,6 +25,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import NProgress from "nprogress";
 
 export default {
   data() {
@@ -35,10 +36,12 @@ export default {
   },
   methods: {
     getWeatherData() {
+      NProgress.start();
       this.fetchTemperature(this.city).catch(() => {
         this.found = false;
         setTimeout(() => (this.found = true), 3000);
       });
+      NProgress.done();
     },
     ...mapActions("temperature", ["clearTemperatureState", "fetchTemperature"])
   },
