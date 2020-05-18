@@ -1,7 +1,7 @@
 <template>
   <section class="WeatherForm">
     <Headline headline="Temperaturservice" />
-    <div>Für welche Stadt soll die Temperatur ermittelt werden?</div>
+    <Subline subline="Für welche Stadt soll die Temperatur ermittelt werden?" />
     <div class="WeatherForm__form">
       <label for="city">Stadt:</label>
       <input type="text" v-model="city" @focus="clearTemperatureState" />
@@ -28,10 +28,12 @@ import { mapState, mapActions } from "vuex";
 import NProgress from "nprogress";
 import { required } from "vuelidate/lib/validators";
 import Headline from "@/components/Headline";
+import Subline from "@/components/Subline";
 
 export default {
   components: {
-    Headline
+    Headline,
+    Subline
   },
   data() {
     return {
